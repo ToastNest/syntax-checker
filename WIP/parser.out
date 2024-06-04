@@ -1,0 +1,157 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOL
+    CHAR
+    COMMA
+    DOUBLE
+    EQUALS
+    FLOAT
+    INT
+    LP
+    NUMBER
+    RP
+    SEMICOL
+    VOID
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> CLASS ID COLON access ID LCP empty RCP
+Rule 2     access -> PRIVATE
+Rule 3     access -> PUBLIC
+Rule 4     access -> PROTECTED
+Rule 5     empty -> <empty>
+
+Terminals, with rules where they appear
+
+BOOL                 : 
+CHAR                 : 
+CLASS                : 1
+COLON                : 1
+COMMA                : 
+DOUBLE               : 
+EQUALS               : 
+FLOAT                : 
+ID                   : 1 1
+INT                  : 
+LCP                  : 1
+LP                   : 
+NUMBER               : 
+PRIVATE              : 2
+PROTECTED            : 4
+PUBLIC               : 3
+RCP                  : 1
+RP                   : 
+SEMICOL              : 
+VOID                 : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+access               : 1
+empty                : 1
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . CLASS ID COLON access ID LCP empty RCP
+
+    CLASS           shift and go to state 2
+
+    start                          shift and go to state 1
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> CLASS . ID COLON access ID LCP empty RCP
+
+    ID              shift and go to state 3
+
+
+state 3
+
+    (1) start -> CLASS ID . COLON access ID LCP empty RCP
+
+    COLON           shift and go to state 4
+
+
+state 4
+
+    (1) start -> CLASS ID COLON . access ID LCP empty RCP
+    (2) access -> . PRIVATE
+    (3) access -> . PUBLIC
+    (4) access -> . PROTECTED
+
+    PRIVATE         shift and go to state 6
+    PUBLIC          shift and go to state 7
+    PROTECTED       shift and go to state 8
+
+    access                         shift and go to state 5
+
+state 5
+
+    (1) start -> CLASS ID COLON access . ID LCP empty RCP
+
+    ID              shift and go to state 9
+
+
+state 6
+
+    (2) access -> PRIVATE .
+
+    ID              reduce using rule 2 (access -> PRIVATE .)
+
+
+state 7
+
+    (3) access -> PUBLIC .
+
+    ID              reduce using rule 3 (access -> PUBLIC .)
+
+
+state 8
+
+    (4) access -> PROTECTED .
+
+    ID              reduce using rule 4 (access -> PROTECTED .)
+
+
+state 9
+
+    (1) start -> CLASS ID COLON access ID . LCP empty RCP
+
+    LCP             shift and go to state 10
+
+
+state 10
+
+    (1) start -> CLASS ID COLON access ID LCP . empty RCP
+    (5) empty -> .
+
+    RCP             reduce using rule 5 (empty -> .)
+
+    empty                          shift and go to state 11
+
+state 11
+
+    (1) start -> CLASS ID COLON access ID LCP empty . RCP
+
+    RCP             shift and go to state 12
+
+
+state 12
+
+    (1) start -> CLASS ID COLON access ID LCP empty RCP .
+
+    $end            reduce using rule 1 (start -> CLASS ID COLON access ID LCP empty RCP .)
+

@@ -1,0 +1,2863 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DEFAULT
+    DIV
+    EXP
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> dataType identifier SEMICOL
+Rule 2     start -> FOR LP initialize SEMICOL condition SEMICOL update RP body
+Rule 3     start -> SWITCH LP ID RP LCP caseBlocks RCP
+Rule 4     start -> CLASS ID LCP classBlock RCP SEMICOL
+Rule 5     start -> return ID SCOPEOP ID LP parameters RP optional LCP statements RCP
+Rule 6     start -> CLASS ID COLON accesstype ID LCP statements RCP
+Rule 7     empty -> <empty>
+Rule 8     dataType -> INT
+Rule 9     dataType -> FLOAT
+Rule 10    dataType -> CHAR
+Rule 11    dataType -> DOUBLE
+Rule 12    dataType -> BOOL
+Rule 13    dataType -> AUTO
+Rule 14    return -> INT
+Rule 15    return -> FLOAT
+Rule 16    return -> CHAR
+Rule 17    return -> DOUBLE
+Rule 18    return -> BOOL
+Rule 19    return -> VOID
+Rule 20    return -> AUTO
+Rule 21    statements -> statements terminal
+Rule 22    statements -> terminal
+Rule 23    terminal -> ID
+Rule 24    terminal -> dataType
+Rule 25    terminal -> operator
+Rule 26    terminal -> SEMICOL
+Rule 27    terminal -> NUMBER
+Rule 28    terminal -> empty
+Rule 29    identifier -> identifier COMMA ident
+Rule 30    identifier -> ident
+Rule 31    ident -> pre ID post
+Rule 32    pre -> POINTER
+Rule 33    pre -> empty
+Rule 34    post -> LSP NUMBER RSP
+Rule 35    post -> empty
+Rule 36    initialize -> dataType ID EQUALS rvalue
+Rule 37    initialize -> ID EQUALS rvalue
+Rule 38    initialize -> rvalue
+Rule 39    initialize -> empty
+Rule 40    rvalue -> ID
+Rule 41    rvalue -> NUMBER
+Rule 42    condition -> ID operator rvalue
+Rule 43    condition -> NOT rvalue
+Rule 44    condition -> empty
+Rule 45    operator -> GT
+Rule 46    operator -> LT
+Rule 47    operator -> GTE
+Rule 48    operator -> LTE
+Rule 49    operator -> EE
+Rule 50    operator -> NE
+Rule 51    update -> ID PLUS PLUS
+Rule 52    update -> PLUS PLUS ID
+Rule 53    update -> ID MINUS MINUS
+Rule 54    update -> MINUS MINUS ID
+Rule 55    update -> empty
+Rule 56    body -> LCP statements RCP
+Rule 57    body -> SEMICOL LCP statements RCP
+Rule 58    caseBlocks -> caseBlocks caseEnd
+Rule 59    caseBlocks -> caseEnd
+Rule 60    caseEnd -> CASE rvalue COLON empty
+Rule 61    caseEnd -> empty
+Rule 62    classBlock -> classBlock classEnd
+Rule 63    classBlock -> classEnd
+Rule 64    classEnd -> access COLON classStatements
+Rule 65    classEnd -> empty
+Rule 66    access -> PRIVATE
+Rule 67    access -> PUBLIC
+Rule 68    access -> PROTECTED
+Rule 69    classStatements -> return ID LP parameters RP SEMICOL
+Rule 70    classStatements -> dataType identifier SEMICOL
+Rule 71    classStatements -> empty
+Rule 72    parameters -> parameters COMMA param
+Rule 73    parameters -> param
+Rule 74    param -> dataType ID
+Rule 75    param -> empty
+Rule 76    optional -> COLON initList
+Rule 77    optional -> empty
+Rule 78    initList -> initList COMMA paraTerminal
+Rule 79    initList -> paraTerminal
+Rule 80    paraTerminal -> ID LP ID RP
+Rule 81    accesstype -> PRIVATE
+Rule 82    accesstype -> PUBLIC
+Rule 83    accesstype -> PROTECTED
+Rule 84    accesstype -> empty
+
+Terminals, with rules where they appear
+
+AUTO                 : 13 20
+BOOL                 : 12 18
+CASE                 : 60
+CHAR                 : 10 16
+CLASS                : 4 6
+COLON                : 6 60 64 76
+COMMA                : 29 72 78
+DEFAULT              : 
+DIV                  : 
+DOUBLE               : 11 17
+EE                   : 49
+EQUALS               : 36 37
+EXP                  : 
+FLOAT                : 9 15
+FOR                  : 2
+GT                   : 45
+GTE                  : 47
+ID                   : 3 4 5 5 6 6 23 31 36 37 40 42 51 52 53 54 69 74 80 80
+INT                  : 8 14
+LCP                  : 3 4 5 6 56 57
+LP                   : 2 3 5 69 80
+LSP                  : 34
+LT                   : 46
+LTE                  : 48
+MINUS                : 53 53 54 54
+NE                   : 50
+NOT                  : 43
+NUMBER               : 27 34 41
+PLUS                 : 51 51 52 52
+POINTER              : 32
+PRIVATE              : 66 81
+PROTECTED            : 68 83
+PUBLIC               : 67 82
+RCP                  : 3 4 5 6 56 57
+RP                   : 2 3 5 69 80
+RSP                  : 34
+SCOPEOP              : 5
+SEMICOL              : 1 2 2 4 26 57 69 70
+SWITCH               : 3
+VOID                 : 19
+error                : 
+
+Nonterminals, with rules where they appear
+
+access               : 64
+accesstype           : 6
+body                 : 2
+caseBlocks           : 3 58
+caseEnd              : 58 59
+classBlock           : 4 62
+classEnd             : 62 63
+classStatements      : 64
+condition            : 2
+dataType             : 1 24 36 70 74
+empty                : 28 33 35 39 44 55 60 61 65 71 75 77 84
+ident                : 29 30
+identifier           : 1 29 70
+initList             : 76 78
+initialize           : 2
+operator             : 25 42
+optional             : 5
+paraTerminal         : 78 79
+param                : 72 73
+parameters           : 5 69 72
+post                 : 31
+pre                  : 31
+return               : 5 69
+rvalue               : 36 37 38 42 43 60
+start                : 0
+statements           : 5 6 21 56 57
+terminal             : 21 22
+update               : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . dataType identifier SEMICOL
+    (2) start -> . FOR LP initialize SEMICOL condition SEMICOL update RP body
+    (3) start -> . SWITCH LP ID RP LCP caseBlocks RCP
+    (4) start -> . CLASS ID LCP classBlock RCP SEMICOL
+    (5) start -> . return ID SCOPEOP ID LP parameters RP optional LCP statements RCP
+    (6) start -> . CLASS ID COLON accesstype ID LCP statements RCP
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (14) return -> . INT
+    (15) return -> . FLOAT
+    (16) return -> . CHAR
+    (17) return -> . DOUBLE
+    (18) return -> . BOOL
+    (19) return -> . VOID
+    (20) return -> . AUTO
+
+    FOR             shift and go to state 3
+    SWITCH          shift and go to state 4
+    CLASS           shift and go to state 5
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    CHAR            shift and go to state 9
+    DOUBLE          shift and go to state 10
+    BOOL            shift and go to state 11
+    AUTO            shift and go to state 12
+    VOID            shift and go to state 13
+
+    start                          shift and go to state 1
+    dataType                       shift and go to state 2
+    return                         shift and go to state 6
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> dataType . identifier SEMICOL
+    (29) identifier -> . identifier COMMA ident
+    (30) identifier -> . ident
+    (31) ident -> . pre ID post
+    (32) pre -> . POINTER
+    (33) pre -> . empty
+    (7) empty -> .
+
+    POINTER         shift and go to state 17
+    ID              reduce using rule 7 (empty -> .)
+
+    identifier                     shift and go to state 14
+    ident                          shift and go to state 15
+    pre                            shift and go to state 16
+    empty                          shift and go to state 18
+
+state 3
+
+    (2) start -> FOR . LP initialize SEMICOL condition SEMICOL update RP body
+
+    LP              shift and go to state 19
+
+
+state 4
+
+    (3) start -> SWITCH . LP ID RP LCP caseBlocks RCP
+
+    LP              shift and go to state 20
+
+
+state 5
+
+    (4) start -> CLASS . ID LCP classBlock RCP SEMICOL
+    (6) start -> CLASS . ID COLON accesstype ID LCP statements RCP
+
+    ID              shift and go to state 21
+
+
+state 6
+
+    (5) start -> return . ID SCOPEOP ID LP parameters RP optional LCP statements RCP
+
+    ID              shift and go to state 22
+
+
+state 7
+
+    (8) dataType -> INT .
+    (14) return -> INT .
+
+  ! reduce/reduce conflict for ID resolved using rule 8 (dataType -> INT .)
+    POINTER         reduce using rule 8 (dataType -> INT .)
+    ID              reduce using rule 8 (dataType -> INT .)
+
+  ! ID              [ reduce using rule 14 (return -> INT .) ]
+
+
+state 8
+
+    (9) dataType -> FLOAT .
+    (15) return -> FLOAT .
+
+  ! reduce/reduce conflict for ID resolved using rule 9 (dataType -> FLOAT .)
+    POINTER         reduce using rule 9 (dataType -> FLOAT .)
+    ID              reduce using rule 9 (dataType -> FLOAT .)
+
+  ! ID              [ reduce using rule 15 (return -> FLOAT .) ]
+
+
+state 9
+
+    (10) dataType -> CHAR .
+    (16) return -> CHAR .
+
+  ! reduce/reduce conflict for ID resolved using rule 10 (dataType -> CHAR .)
+    POINTER         reduce using rule 10 (dataType -> CHAR .)
+    ID              reduce using rule 10 (dataType -> CHAR .)
+
+  ! ID              [ reduce using rule 16 (return -> CHAR .) ]
+
+
+state 10
+
+    (11) dataType -> DOUBLE .
+    (17) return -> DOUBLE .
+
+  ! reduce/reduce conflict for ID resolved using rule 11 (dataType -> DOUBLE .)
+    POINTER         reduce using rule 11 (dataType -> DOUBLE .)
+    ID              reduce using rule 11 (dataType -> DOUBLE .)
+
+  ! ID              [ reduce using rule 17 (return -> DOUBLE .) ]
+
+
+state 11
+
+    (12) dataType -> BOOL .
+    (18) return -> BOOL .
+
+  ! reduce/reduce conflict for ID resolved using rule 12 (dataType -> BOOL .)
+    POINTER         reduce using rule 12 (dataType -> BOOL .)
+    ID              reduce using rule 12 (dataType -> BOOL .)
+
+  ! ID              [ reduce using rule 18 (return -> BOOL .) ]
+
+
+state 12
+
+    (13) dataType -> AUTO .
+    (20) return -> AUTO .
+
+  ! reduce/reduce conflict for ID resolved using rule 13 (dataType -> AUTO .)
+    POINTER         reduce using rule 13 (dataType -> AUTO .)
+    ID              reduce using rule 13 (dataType -> AUTO .)
+
+  ! ID              [ reduce using rule 20 (return -> AUTO .) ]
+
+
+state 13
+
+    (19) return -> VOID .
+
+    ID              reduce using rule 19 (return -> VOID .)
+
+
+state 14
+
+    (1) start -> dataType identifier . SEMICOL
+    (29) identifier -> identifier . COMMA ident
+
+    SEMICOL         shift and go to state 23
+    COMMA           shift and go to state 24
+
+
+state 15
+
+    (30) identifier -> ident .
+
+    SEMICOL         reduce using rule 30 (identifier -> ident .)
+    COMMA           reduce using rule 30 (identifier -> ident .)
+
+
+state 16
+
+    (31) ident -> pre . ID post
+
+    ID              shift and go to state 25
+
+
+state 17
+
+    (32) pre -> POINTER .
+
+    ID              reduce using rule 32 (pre -> POINTER .)
+
+
+state 18
+
+    (33) pre -> empty .
+
+    ID              reduce using rule 33 (pre -> empty .)
+
+
+state 19
+
+    (2) start -> FOR LP . initialize SEMICOL condition SEMICOL update RP body
+    (36) initialize -> . dataType ID EQUALS rvalue
+    (37) initialize -> . ID EQUALS rvalue
+    (38) initialize -> . rvalue
+    (39) initialize -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (40) rvalue -> . ID
+    (41) rvalue -> . NUMBER
+    (7) empty -> .
+
+    ID              shift and go to state 28
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    NUMBER          shift and go to state 37
+    SEMICOL         reduce using rule 7 (empty -> .)
+
+    initialize                     shift and go to state 26
+    dataType                       shift and go to state 27
+    rvalue                         shift and go to state 29
+    empty                          shift and go to state 30
+
+state 20
+
+    (3) start -> SWITCH LP . ID RP LCP caseBlocks RCP
+
+    ID              shift and go to state 38
+
+
+state 21
+
+    (4) start -> CLASS ID . LCP classBlock RCP SEMICOL
+    (6) start -> CLASS ID . COLON accesstype ID LCP statements RCP
+
+    LCP             shift and go to state 39
+    COLON           shift and go to state 40
+
+
+state 22
+
+    (5) start -> return ID . SCOPEOP ID LP parameters RP optional LCP statements RCP
+
+    SCOPEOP         shift and go to state 41
+
+
+state 23
+
+    (1) start -> dataType identifier SEMICOL .
+
+    $end            reduce using rule 1 (start -> dataType identifier SEMICOL .)
+
+
+state 24
+
+    (29) identifier -> identifier COMMA . ident
+    (31) ident -> . pre ID post
+    (32) pre -> . POINTER
+    (33) pre -> . empty
+    (7) empty -> .
+
+    POINTER         shift and go to state 17
+    ID              reduce using rule 7 (empty -> .)
+
+    ident                          shift and go to state 42
+    pre                            shift and go to state 16
+    empty                          shift and go to state 18
+
+state 25
+
+    (31) ident -> pre ID . post
+    (34) post -> . LSP NUMBER RSP
+    (35) post -> . empty
+    (7) empty -> .
+
+    LSP             shift and go to state 44
+    SEMICOL         reduce using rule 7 (empty -> .)
+    COMMA           reduce using rule 7 (empty -> .)
+
+    post                           shift and go to state 43
+    empty                          shift and go to state 45
+
+state 26
+
+    (2) start -> FOR LP initialize . SEMICOL condition SEMICOL update RP body
+
+    SEMICOL         shift and go to state 46
+
+
+state 27
+
+    (36) initialize -> dataType . ID EQUALS rvalue
+
+    ID              shift and go to state 47
+
+
+state 28
+
+    (37) initialize -> ID . EQUALS rvalue
+    (40) rvalue -> ID .
+
+    EQUALS          shift and go to state 48
+    SEMICOL         reduce using rule 40 (rvalue -> ID .)
+
+
+state 29
+
+    (38) initialize -> rvalue .
+
+    SEMICOL         reduce using rule 38 (initialize -> rvalue .)
+
+
+state 30
+
+    (39) initialize -> empty .
+
+    SEMICOL         reduce using rule 39 (initialize -> empty .)
+
+
+state 31
+
+    (8) dataType -> INT .
+
+    ID              reduce using rule 8 (dataType -> INT .)
+    RCP             reduce using rule 8 (dataType -> INT .)
+    SEMICOL         reduce using rule 8 (dataType -> INT .)
+    NUMBER          reduce using rule 8 (dataType -> INT .)
+    INT             reduce using rule 8 (dataType -> INT .)
+    FLOAT           reduce using rule 8 (dataType -> INT .)
+    CHAR            reduce using rule 8 (dataType -> INT .)
+    DOUBLE          reduce using rule 8 (dataType -> INT .)
+    BOOL            reduce using rule 8 (dataType -> INT .)
+    AUTO            reduce using rule 8 (dataType -> INT .)
+    GT              reduce using rule 8 (dataType -> INT .)
+    LT              reduce using rule 8 (dataType -> INT .)
+    GTE             reduce using rule 8 (dataType -> INT .)
+    LTE             reduce using rule 8 (dataType -> INT .)
+    EE              reduce using rule 8 (dataType -> INT .)
+    NE              reduce using rule 8 (dataType -> INT .)
+
+
+state 32
+
+    (9) dataType -> FLOAT .
+
+    ID              reduce using rule 9 (dataType -> FLOAT .)
+    RCP             reduce using rule 9 (dataType -> FLOAT .)
+    SEMICOL         reduce using rule 9 (dataType -> FLOAT .)
+    NUMBER          reduce using rule 9 (dataType -> FLOAT .)
+    INT             reduce using rule 9 (dataType -> FLOAT .)
+    FLOAT           reduce using rule 9 (dataType -> FLOAT .)
+    CHAR            reduce using rule 9 (dataType -> FLOAT .)
+    DOUBLE          reduce using rule 9 (dataType -> FLOAT .)
+    BOOL            reduce using rule 9 (dataType -> FLOAT .)
+    AUTO            reduce using rule 9 (dataType -> FLOAT .)
+    GT              reduce using rule 9 (dataType -> FLOAT .)
+    LT              reduce using rule 9 (dataType -> FLOAT .)
+    GTE             reduce using rule 9 (dataType -> FLOAT .)
+    LTE             reduce using rule 9 (dataType -> FLOAT .)
+    EE              reduce using rule 9 (dataType -> FLOAT .)
+    NE              reduce using rule 9 (dataType -> FLOAT .)
+
+
+state 33
+
+    (10) dataType -> CHAR .
+
+    ID              reduce using rule 10 (dataType -> CHAR .)
+    RCP             reduce using rule 10 (dataType -> CHAR .)
+    SEMICOL         reduce using rule 10 (dataType -> CHAR .)
+    NUMBER          reduce using rule 10 (dataType -> CHAR .)
+    INT             reduce using rule 10 (dataType -> CHAR .)
+    FLOAT           reduce using rule 10 (dataType -> CHAR .)
+    CHAR            reduce using rule 10 (dataType -> CHAR .)
+    DOUBLE          reduce using rule 10 (dataType -> CHAR .)
+    BOOL            reduce using rule 10 (dataType -> CHAR .)
+    AUTO            reduce using rule 10 (dataType -> CHAR .)
+    GT              reduce using rule 10 (dataType -> CHAR .)
+    LT              reduce using rule 10 (dataType -> CHAR .)
+    GTE             reduce using rule 10 (dataType -> CHAR .)
+    LTE             reduce using rule 10 (dataType -> CHAR .)
+    EE              reduce using rule 10 (dataType -> CHAR .)
+    NE              reduce using rule 10 (dataType -> CHAR .)
+
+
+state 34
+
+    (11) dataType -> DOUBLE .
+
+    ID              reduce using rule 11 (dataType -> DOUBLE .)
+    RCP             reduce using rule 11 (dataType -> DOUBLE .)
+    SEMICOL         reduce using rule 11 (dataType -> DOUBLE .)
+    NUMBER          reduce using rule 11 (dataType -> DOUBLE .)
+    INT             reduce using rule 11 (dataType -> DOUBLE .)
+    FLOAT           reduce using rule 11 (dataType -> DOUBLE .)
+    CHAR            reduce using rule 11 (dataType -> DOUBLE .)
+    DOUBLE          reduce using rule 11 (dataType -> DOUBLE .)
+    BOOL            reduce using rule 11 (dataType -> DOUBLE .)
+    AUTO            reduce using rule 11 (dataType -> DOUBLE .)
+    GT              reduce using rule 11 (dataType -> DOUBLE .)
+    LT              reduce using rule 11 (dataType -> DOUBLE .)
+    GTE             reduce using rule 11 (dataType -> DOUBLE .)
+    LTE             reduce using rule 11 (dataType -> DOUBLE .)
+    EE              reduce using rule 11 (dataType -> DOUBLE .)
+    NE              reduce using rule 11 (dataType -> DOUBLE .)
+
+
+state 35
+
+    (12) dataType -> BOOL .
+
+    ID              reduce using rule 12 (dataType -> BOOL .)
+    RCP             reduce using rule 12 (dataType -> BOOL .)
+    SEMICOL         reduce using rule 12 (dataType -> BOOL .)
+    NUMBER          reduce using rule 12 (dataType -> BOOL .)
+    INT             reduce using rule 12 (dataType -> BOOL .)
+    FLOAT           reduce using rule 12 (dataType -> BOOL .)
+    CHAR            reduce using rule 12 (dataType -> BOOL .)
+    DOUBLE          reduce using rule 12 (dataType -> BOOL .)
+    BOOL            reduce using rule 12 (dataType -> BOOL .)
+    AUTO            reduce using rule 12 (dataType -> BOOL .)
+    GT              reduce using rule 12 (dataType -> BOOL .)
+    LT              reduce using rule 12 (dataType -> BOOL .)
+    GTE             reduce using rule 12 (dataType -> BOOL .)
+    LTE             reduce using rule 12 (dataType -> BOOL .)
+    EE              reduce using rule 12 (dataType -> BOOL .)
+    NE              reduce using rule 12 (dataType -> BOOL .)
+
+
+state 36
+
+    (13) dataType -> AUTO .
+
+    ID              reduce using rule 13 (dataType -> AUTO .)
+    RCP             reduce using rule 13 (dataType -> AUTO .)
+    SEMICOL         reduce using rule 13 (dataType -> AUTO .)
+    NUMBER          reduce using rule 13 (dataType -> AUTO .)
+    INT             reduce using rule 13 (dataType -> AUTO .)
+    FLOAT           reduce using rule 13 (dataType -> AUTO .)
+    CHAR            reduce using rule 13 (dataType -> AUTO .)
+    DOUBLE          reduce using rule 13 (dataType -> AUTO .)
+    BOOL            reduce using rule 13 (dataType -> AUTO .)
+    AUTO            reduce using rule 13 (dataType -> AUTO .)
+    GT              reduce using rule 13 (dataType -> AUTO .)
+    LT              reduce using rule 13 (dataType -> AUTO .)
+    GTE             reduce using rule 13 (dataType -> AUTO .)
+    LTE             reduce using rule 13 (dataType -> AUTO .)
+    EE              reduce using rule 13 (dataType -> AUTO .)
+    NE              reduce using rule 13 (dataType -> AUTO .)
+
+
+state 37
+
+    (41) rvalue -> NUMBER .
+
+    SEMICOL         reduce using rule 41 (rvalue -> NUMBER .)
+    COLON           reduce using rule 41 (rvalue -> NUMBER .)
+
+
+state 38
+
+    (3) start -> SWITCH LP ID . RP LCP caseBlocks RCP
+
+    RP              shift and go to state 49
+
+
+state 39
+
+    (4) start -> CLASS ID LCP . classBlock RCP SEMICOL
+    (62) classBlock -> . classBlock classEnd
+    (63) classBlock -> . classEnd
+    (64) classEnd -> . access COLON classStatements
+    (65) classEnd -> . empty
+    (66) access -> . PRIVATE
+    (67) access -> . PUBLIC
+    (68) access -> . PROTECTED
+    (7) empty -> .
+
+  ! shift/reduce conflict for PRIVATE resolved as shift
+  ! shift/reduce conflict for PUBLIC resolved as shift
+  ! shift/reduce conflict for PROTECTED resolved as shift
+    PRIVATE         shift and go to state 54
+    PUBLIC          shift and go to state 55
+    PROTECTED       shift and go to state 56
+    RCP             reduce using rule 7 (empty -> .)
+
+  ! PRIVATE         [ reduce using rule 7 (empty -> .) ]
+  ! PUBLIC          [ reduce using rule 7 (empty -> .) ]
+  ! PROTECTED       [ reduce using rule 7 (empty -> .) ]
+
+    classBlock                     shift and go to state 50
+    classEnd                       shift and go to state 51
+    access                         shift and go to state 52
+    empty                          shift and go to state 53
+
+state 40
+
+    (6) start -> CLASS ID COLON . accesstype ID LCP statements RCP
+    (81) accesstype -> . PRIVATE
+    (82) accesstype -> . PUBLIC
+    (83) accesstype -> . PROTECTED
+    (84) accesstype -> . empty
+    (7) empty -> .
+
+    PRIVATE         shift and go to state 58
+    PUBLIC          shift and go to state 59
+    PROTECTED       shift and go to state 60
+    ID              reduce using rule 7 (empty -> .)
+
+    accesstype                     shift and go to state 57
+    empty                          shift and go to state 61
+
+state 41
+
+    (5) start -> return ID SCOPEOP . ID LP parameters RP optional LCP statements RCP
+
+    ID              shift and go to state 62
+
+
+state 42
+
+    (29) identifier -> identifier COMMA ident .
+
+    SEMICOL         reduce using rule 29 (identifier -> identifier COMMA ident .)
+    COMMA           reduce using rule 29 (identifier -> identifier COMMA ident .)
+
+
+state 43
+
+    (31) ident -> pre ID post .
+
+    SEMICOL         reduce using rule 31 (ident -> pre ID post .)
+    COMMA           reduce using rule 31 (ident -> pre ID post .)
+
+
+state 44
+
+    (34) post -> LSP . NUMBER RSP
+
+    NUMBER          shift and go to state 63
+
+
+state 45
+
+    (35) post -> empty .
+
+    SEMICOL         reduce using rule 35 (post -> empty .)
+    COMMA           reduce using rule 35 (post -> empty .)
+
+
+state 46
+
+    (2) start -> FOR LP initialize SEMICOL . condition SEMICOL update RP body
+    (42) condition -> . ID operator rvalue
+    (43) condition -> . NOT rvalue
+    (44) condition -> . empty
+    (7) empty -> .
+
+    ID              shift and go to state 65
+    NOT             shift and go to state 66
+    SEMICOL         reduce using rule 7 (empty -> .)
+
+    condition                      shift and go to state 64
+    empty                          shift and go to state 67
+
+state 47
+
+    (36) initialize -> dataType ID . EQUALS rvalue
+
+    EQUALS          shift and go to state 68
+
+
+state 48
+
+    (37) initialize -> ID EQUALS . rvalue
+    (40) rvalue -> . ID
+    (41) rvalue -> . NUMBER
+
+    ID              shift and go to state 69
+    NUMBER          shift and go to state 37
+
+    rvalue                         shift and go to state 70
+
+state 49
+
+    (3) start -> SWITCH LP ID RP . LCP caseBlocks RCP
+
+    LCP             shift and go to state 71
+
+
+state 50
+
+    (4) start -> CLASS ID LCP classBlock . RCP SEMICOL
+    (62) classBlock -> classBlock . classEnd
+    (64) classEnd -> . access COLON classStatements
+    (65) classEnd -> . empty
+    (66) access -> . PRIVATE
+    (67) access -> . PUBLIC
+    (68) access -> . PROTECTED
+    (7) empty -> .
+
+  ! shift/reduce conflict for RCP resolved as shift
+  ! shift/reduce conflict for PRIVATE resolved as shift
+  ! shift/reduce conflict for PUBLIC resolved as shift
+  ! shift/reduce conflict for PROTECTED resolved as shift
+    RCP             shift and go to state 72
+    PRIVATE         shift and go to state 54
+    PUBLIC          shift and go to state 55
+    PROTECTED       shift and go to state 56
+
+  ! RCP             [ reduce using rule 7 (empty -> .) ]
+  ! PRIVATE         [ reduce using rule 7 (empty -> .) ]
+  ! PUBLIC          [ reduce using rule 7 (empty -> .) ]
+  ! PROTECTED       [ reduce using rule 7 (empty -> .) ]
+
+    classEnd                       shift and go to state 73
+    access                         shift and go to state 52
+    empty                          shift and go to state 53
+
+state 51
+
+    (63) classBlock -> classEnd .
+
+    RCP             reduce using rule 63 (classBlock -> classEnd .)
+    PRIVATE         reduce using rule 63 (classBlock -> classEnd .)
+    PUBLIC          reduce using rule 63 (classBlock -> classEnd .)
+    PROTECTED       reduce using rule 63 (classBlock -> classEnd .)
+
+
+state 52
+
+    (64) classEnd -> access . COLON classStatements
+
+    COLON           shift and go to state 74
+
+
+state 53
+
+    (65) classEnd -> empty .
+
+    RCP             reduce using rule 65 (classEnd -> empty .)
+    PRIVATE         reduce using rule 65 (classEnd -> empty .)
+    PUBLIC          reduce using rule 65 (classEnd -> empty .)
+    PROTECTED       reduce using rule 65 (classEnd -> empty .)
+
+
+state 54
+
+    (66) access -> PRIVATE .
+
+    COLON           reduce using rule 66 (access -> PRIVATE .)
+
+
+state 55
+
+    (67) access -> PUBLIC .
+
+    COLON           reduce using rule 67 (access -> PUBLIC .)
+
+
+state 56
+
+    (68) access -> PROTECTED .
+
+    COLON           reduce using rule 68 (access -> PROTECTED .)
+
+
+state 57
+
+    (6) start -> CLASS ID COLON accesstype . ID LCP statements RCP
+
+    ID              shift and go to state 75
+
+
+state 58
+
+    (81) accesstype -> PRIVATE .
+
+    ID              reduce using rule 81 (accesstype -> PRIVATE .)
+
+
+state 59
+
+    (82) accesstype -> PUBLIC .
+
+    ID              reduce using rule 82 (accesstype -> PUBLIC .)
+
+
+state 60
+
+    (83) accesstype -> PROTECTED .
+
+    ID              reduce using rule 83 (accesstype -> PROTECTED .)
+
+
+state 61
+
+    (84) accesstype -> empty .
+
+    ID              reduce using rule 84 (accesstype -> empty .)
+
+
+state 62
+
+    (5) start -> return ID SCOPEOP ID . LP parameters RP optional LCP statements RCP
+
+    LP              shift and go to state 76
+
+
+state 63
+
+    (34) post -> LSP NUMBER . RSP
+
+    RSP             shift and go to state 77
+
+
+state 64
+
+    (2) start -> FOR LP initialize SEMICOL condition . SEMICOL update RP body
+
+    SEMICOL         shift and go to state 78
+
+
+state 65
+
+    (42) condition -> ID . operator rvalue
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+
+    operator                       shift and go to state 79
+
+state 66
+
+    (43) condition -> NOT . rvalue
+    (40) rvalue -> . ID
+    (41) rvalue -> . NUMBER
+
+    ID              shift and go to state 69
+    NUMBER          shift and go to state 37
+
+    rvalue                         shift and go to state 86
+
+state 67
+
+    (44) condition -> empty .
+
+    SEMICOL         reduce using rule 44 (condition -> empty .)
+
+
+state 68
+
+    (36) initialize -> dataType ID EQUALS . rvalue
+    (40) rvalue -> . ID
+    (41) rvalue -> . NUMBER
+
+    ID              shift and go to state 69
+    NUMBER          shift and go to state 37
+
+    rvalue                         shift and go to state 87
+
+state 69
+
+    (40) rvalue -> ID .
+
+    SEMICOL         reduce using rule 40 (rvalue -> ID .)
+    COLON           reduce using rule 40 (rvalue -> ID .)
+
+
+state 70
+
+    (37) initialize -> ID EQUALS rvalue .
+
+    SEMICOL         reduce using rule 37 (initialize -> ID EQUALS rvalue .)
+
+
+state 71
+
+    (3) start -> SWITCH LP ID RP LCP . caseBlocks RCP
+    (58) caseBlocks -> . caseBlocks caseEnd
+    (59) caseBlocks -> . caseEnd
+    (60) caseEnd -> . CASE rvalue COLON empty
+    (61) caseEnd -> . empty
+    (7) empty -> .
+
+  ! shift/reduce conflict for CASE resolved as shift
+    CASE            shift and go to state 90
+    RCP             reduce using rule 7 (empty -> .)
+
+  ! CASE            [ reduce using rule 7 (empty -> .) ]
+
+    caseBlocks                     shift and go to state 88
+    caseEnd                        shift and go to state 89
+    empty                          shift and go to state 91
+
+state 72
+
+    (4) start -> CLASS ID LCP classBlock RCP . SEMICOL
+
+    SEMICOL         shift and go to state 92
+
+
+state 73
+
+    (62) classBlock -> classBlock classEnd .
+
+    RCP             reduce using rule 62 (classBlock -> classBlock classEnd .)
+    PRIVATE         reduce using rule 62 (classBlock -> classBlock classEnd .)
+    PUBLIC          reduce using rule 62 (classBlock -> classBlock classEnd .)
+    PROTECTED       reduce using rule 62 (classBlock -> classBlock classEnd .)
+
+
+state 74
+
+    (64) classEnd -> access COLON . classStatements
+    (69) classStatements -> . return ID LP parameters RP SEMICOL
+    (70) classStatements -> . dataType identifier SEMICOL
+    (71) classStatements -> . empty
+    (14) return -> . INT
+    (15) return -> . FLOAT
+    (16) return -> . CHAR
+    (17) return -> . DOUBLE
+    (18) return -> . BOOL
+    (19) return -> . VOID
+    (20) return -> . AUTO
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (7) empty -> .
+
+    INT             shift and go to state 97
+    FLOAT           shift and go to state 98
+    CHAR            shift and go to state 99
+    DOUBLE          shift and go to state 100
+    BOOL            shift and go to state 101
+    VOID            shift and go to state 13
+    AUTO            shift and go to state 102
+    RCP             reduce using rule 7 (empty -> .)
+    PRIVATE         reduce using rule 7 (empty -> .)
+    PUBLIC          reduce using rule 7 (empty -> .)
+    PROTECTED       reduce using rule 7 (empty -> .)
+
+    classStatements                shift and go to state 93
+    return                         shift and go to state 94
+    dataType                       shift and go to state 95
+    empty                          shift and go to state 96
+
+state 75
+
+    (6) start -> CLASS ID COLON accesstype ID . LCP statements RCP
+
+    LCP             shift and go to state 103
+
+
+state 76
+
+    (5) start -> return ID SCOPEOP ID LP . parameters RP optional LCP statements RCP
+    (72) parameters -> . parameters COMMA param
+    (73) parameters -> . param
+    (74) param -> . dataType ID
+    (75) param -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (7) empty -> .
+
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    RP              reduce using rule 7 (empty -> .)
+    COMMA           reduce using rule 7 (empty -> .)
+
+    parameters                     shift and go to state 104
+    param                          shift and go to state 105
+    dataType                       shift and go to state 106
+    empty                          shift and go to state 107
+
+state 77
+
+    (34) post -> LSP NUMBER RSP .
+
+    SEMICOL         reduce using rule 34 (post -> LSP NUMBER RSP .)
+    COMMA           reduce using rule 34 (post -> LSP NUMBER RSP .)
+
+
+state 78
+
+    (2) start -> FOR LP initialize SEMICOL condition SEMICOL . update RP body
+    (51) update -> . ID PLUS PLUS
+    (52) update -> . PLUS PLUS ID
+    (53) update -> . ID MINUS MINUS
+    (54) update -> . MINUS MINUS ID
+    (55) update -> . empty
+    (7) empty -> .
+
+    ID              shift and go to state 109
+    PLUS            shift and go to state 110
+    MINUS           shift and go to state 111
+    RP              reduce using rule 7 (empty -> .)
+
+    update                         shift and go to state 108
+    empty                          shift and go to state 112
+
+state 79
+
+    (42) condition -> ID operator . rvalue
+    (40) rvalue -> . ID
+    (41) rvalue -> . NUMBER
+
+    ID              shift and go to state 69
+    NUMBER          shift and go to state 37
+
+    rvalue                         shift and go to state 113
+
+state 80
+
+    (45) operator -> GT .
+
+    ID              reduce using rule 45 (operator -> GT .)
+    NUMBER          reduce using rule 45 (operator -> GT .)
+    RCP             reduce using rule 45 (operator -> GT .)
+    SEMICOL         reduce using rule 45 (operator -> GT .)
+    INT             reduce using rule 45 (operator -> GT .)
+    FLOAT           reduce using rule 45 (operator -> GT .)
+    CHAR            reduce using rule 45 (operator -> GT .)
+    DOUBLE          reduce using rule 45 (operator -> GT .)
+    BOOL            reduce using rule 45 (operator -> GT .)
+    AUTO            reduce using rule 45 (operator -> GT .)
+    GT              reduce using rule 45 (operator -> GT .)
+    LT              reduce using rule 45 (operator -> GT .)
+    GTE             reduce using rule 45 (operator -> GT .)
+    LTE             reduce using rule 45 (operator -> GT .)
+    EE              reduce using rule 45 (operator -> GT .)
+    NE              reduce using rule 45 (operator -> GT .)
+
+
+state 81
+
+    (46) operator -> LT .
+
+    ID              reduce using rule 46 (operator -> LT .)
+    NUMBER          reduce using rule 46 (operator -> LT .)
+    RCP             reduce using rule 46 (operator -> LT .)
+    SEMICOL         reduce using rule 46 (operator -> LT .)
+    INT             reduce using rule 46 (operator -> LT .)
+    FLOAT           reduce using rule 46 (operator -> LT .)
+    CHAR            reduce using rule 46 (operator -> LT .)
+    DOUBLE          reduce using rule 46 (operator -> LT .)
+    BOOL            reduce using rule 46 (operator -> LT .)
+    AUTO            reduce using rule 46 (operator -> LT .)
+    GT              reduce using rule 46 (operator -> LT .)
+    LT              reduce using rule 46 (operator -> LT .)
+    GTE             reduce using rule 46 (operator -> LT .)
+    LTE             reduce using rule 46 (operator -> LT .)
+    EE              reduce using rule 46 (operator -> LT .)
+    NE              reduce using rule 46 (operator -> LT .)
+
+
+state 82
+
+    (47) operator -> GTE .
+
+    ID              reduce using rule 47 (operator -> GTE .)
+    NUMBER          reduce using rule 47 (operator -> GTE .)
+    RCP             reduce using rule 47 (operator -> GTE .)
+    SEMICOL         reduce using rule 47 (operator -> GTE .)
+    INT             reduce using rule 47 (operator -> GTE .)
+    FLOAT           reduce using rule 47 (operator -> GTE .)
+    CHAR            reduce using rule 47 (operator -> GTE .)
+    DOUBLE          reduce using rule 47 (operator -> GTE .)
+    BOOL            reduce using rule 47 (operator -> GTE .)
+    AUTO            reduce using rule 47 (operator -> GTE .)
+    GT              reduce using rule 47 (operator -> GTE .)
+    LT              reduce using rule 47 (operator -> GTE .)
+    GTE             reduce using rule 47 (operator -> GTE .)
+    LTE             reduce using rule 47 (operator -> GTE .)
+    EE              reduce using rule 47 (operator -> GTE .)
+    NE              reduce using rule 47 (operator -> GTE .)
+
+
+state 83
+
+    (48) operator -> LTE .
+
+    ID              reduce using rule 48 (operator -> LTE .)
+    NUMBER          reduce using rule 48 (operator -> LTE .)
+    RCP             reduce using rule 48 (operator -> LTE .)
+    SEMICOL         reduce using rule 48 (operator -> LTE .)
+    INT             reduce using rule 48 (operator -> LTE .)
+    FLOAT           reduce using rule 48 (operator -> LTE .)
+    CHAR            reduce using rule 48 (operator -> LTE .)
+    DOUBLE          reduce using rule 48 (operator -> LTE .)
+    BOOL            reduce using rule 48 (operator -> LTE .)
+    AUTO            reduce using rule 48 (operator -> LTE .)
+    GT              reduce using rule 48 (operator -> LTE .)
+    LT              reduce using rule 48 (operator -> LTE .)
+    GTE             reduce using rule 48 (operator -> LTE .)
+    LTE             reduce using rule 48 (operator -> LTE .)
+    EE              reduce using rule 48 (operator -> LTE .)
+    NE              reduce using rule 48 (operator -> LTE .)
+
+
+state 84
+
+    (49) operator -> EE .
+
+    ID              reduce using rule 49 (operator -> EE .)
+    NUMBER          reduce using rule 49 (operator -> EE .)
+    RCP             reduce using rule 49 (operator -> EE .)
+    SEMICOL         reduce using rule 49 (operator -> EE .)
+    INT             reduce using rule 49 (operator -> EE .)
+    FLOAT           reduce using rule 49 (operator -> EE .)
+    CHAR            reduce using rule 49 (operator -> EE .)
+    DOUBLE          reduce using rule 49 (operator -> EE .)
+    BOOL            reduce using rule 49 (operator -> EE .)
+    AUTO            reduce using rule 49 (operator -> EE .)
+    GT              reduce using rule 49 (operator -> EE .)
+    LT              reduce using rule 49 (operator -> EE .)
+    GTE             reduce using rule 49 (operator -> EE .)
+    LTE             reduce using rule 49 (operator -> EE .)
+    EE              reduce using rule 49 (operator -> EE .)
+    NE              reduce using rule 49 (operator -> EE .)
+
+
+state 85
+
+    (50) operator -> NE .
+
+    ID              reduce using rule 50 (operator -> NE .)
+    NUMBER          reduce using rule 50 (operator -> NE .)
+    RCP             reduce using rule 50 (operator -> NE .)
+    SEMICOL         reduce using rule 50 (operator -> NE .)
+    INT             reduce using rule 50 (operator -> NE .)
+    FLOAT           reduce using rule 50 (operator -> NE .)
+    CHAR            reduce using rule 50 (operator -> NE .)
+    DOUBLE          reduce using rule 50 (operator -> NE .)
+    BOOL            reduce using rule 50 (operator -> NE .)
+    AUTO            reduce using rule 50 (operator -> NE .)
+    GT              reduce using rule 50 (operator -> NE .)
+    LT              reduce using rule 50 (operator -> NE .)
+    GTE             reduce using rule 50 (operator -> NE .)
+    LTE             reduce using rule 50 (operator -> NE .)
+    EE              reduce using rule 50 (operator -> NE .)
+    NE              reduce using rule 50 (operator -> NE .)
+
+
+state 86
+
+    (43) condition -> NOT rvalue .
+
+    SEMICOL         reduce using rule 43 (condition -> NOT rvalue .)
+
+
+state 87
+
+    (36) initialize -> dataType ID EQUALS rvalue .
+
+    SEMICOL         reduce using rule 36 (initialize -> dataType ID EQUALS rvalue .)
+
+
+state 88
+
+    (3) start -> SWITCH LP ID RP LCP caseBlocks . RCP
+    (58) caseBlocks -> caseBlocks . caseEnd
+    (60) caseEnd -> . CASE rvalue COLON empty
+    (61) caseEnd -> . empty
+    (7) empty -> .
+
+  ! shift/reduce conflict for RCP resolved as shift
+  ! shift/reduce conflict for CASE resolved as shift
+    RCP             shift and go to state 114
+    CASE            shift and go to state 90
+
+  ! RCP             [ reduce using rule 7 (empty -> .) ]
+  ! CASE            [ reduce using rule 7 (empty -> .) ]
+
+    caseEnd                        shift and go to state 115
+    empty                          shift and go to state 91
+
+state 89
+
+    (59) caseBlocks -> caseEnd .
+
+    RCP             reduce using rule 59 (caseBlocks -> caseEnd .)
+    CASE            reduce using rule 59 (caseBlocks -> caseEnd .)
+
+
+state 90
+
+    (60) caseEnd -> CASE . rvalue COLON empty
+    (40) rvalue -> . ID
+    (41) rvalue -> . NUMBER
+
+    ID              shift and go to state 69
+    NUMBER          shift and go to state 37
+
+    rvalue                         shift and go to state 116
+
+state 91
+
+    (61) caseEnd -> empty .
+
+    RCP             reduce using rule 61 (caseEnd -> empty .)
+    CASE            reduce using rule 61 (caseEnd -> empty .)
+
+
+state 92
+
+    (4) start -> CLASS ID LCP classBlock RCP SEMICOL .
+
+    $end            reduce using rule 4 (start -> CLASS ID LCP classBlock RCP SEMICOL .)
+
+
+state 93
+
+    (64) classEnd -> access COLON classStatements .
+
+    RCP             reduce using rule 64 (classEnd -> access COLON classStatements .)
+    PRIVATE         reduce using rule 64 (classEnd -> access COLON classStatements .)
+    PUBLIC          reduce using rule 64 (classEnd -> access COLON classStatements .)
+    PROTECTED       reduce using rule 64 (classEnd -> access COLON classStatements .)
+
+
+state 94
+
+    (69) classStatements -> return . ID LP parameters RP SEMICOL
+
+    ID              shift and go to state 117
+
+
+state 95
+
+    (70) classStatements -> dataType . identifier SEMICOL
+    (29) identifier -> . identifier COMMA ident
+    (30) identifier -> . ident
+    (31) ident -> . pre ID post
+    (32) pre -> . POINTER
+    (33) pre -> . empty
+    (7) empty -> .
+
+    POINTER         shift and go to state 17
+    ID              reduce using rule 7 (empty -> .)
+
+    identifier                     shift and go to state 118
+    ident                          shift and go to state 15
+    pre                            shift and go to state 16
+    empty                          shift and go to state 18
+
+state 96
+
+    (71) classStatements -> empty .
+
+    RCP             reduce using rule 71 (classStatements -> empty .)
+    PRIVATE         reduce using rule 71 (classStatements -> empty .)
+    PUBLIC          reduce using rule 71 (classStatements -> empty .)
+    PROTECTED       reduce using rule 71 (classStatements -> empty .)
+
+
+state 97
+
+    (14) return -> INT .
+    (8) dataType -> INT .
+
+  ! reduce/reduce conflict for ID resolved using rule 8 (dataType -> INT .)
+    POINTER         reduce using rule 8 (dataType -> INT .)
+    ID              reduce using rule 8 (dataType -> INT .)
+
+  ! ID              [ reduce using rule 14 (return -> INT .) ]
+
+
+state 98
+
+    (15) return -> FLOAT .
+    (9) dataType -> FLOAT .
+
+  ! reduce/reduce conflict for ID resolved using rule 9 (dataType -> FLOAT .)
+    POINTER         reduce using rule 9 (dataType -> FLOAT .)
+    ID              reduce using rule 9 (dataType -> FLOAT .)
+
+  ! ID              [ reduce using rule 15 (return -> FLOAT .) ]
+
+
+state 99
+
+    (16) return -> CHAR .
+    (10) dataType -> CHAR .
+
+  ! reduce/reduce conflict for ID resolved using rule 10 (dataType -> CHAR .)
+    POINTER         reduce using rule 10 (dataType -> CHAR .)
+    ID              reduce using rule 10 (dataType -> CHAR .)
+
+  ! ID              [ reduce using rule 16 (return -> CHAR .) ]
+
+
+state 100
+
+    (17) return -> DOUBLE .
+    (11) dataType -> DOUBLE .
+
+  ! reduce/reduce conflict for ID resolved using rule 11 (dataType -> DOUBLE .)
+    POINTER         reduce using rule 11 (dataType -> DOUBLE .)
+    ID              reduce using rule 11 (dataType -> DOUBLE .)
+
+  ! ID              [ reduce using rule 17 (return -> DOUBLE .) ]
+
+
+state 101
+
+    (18) return -> BOOL .
+    (12) dataType -> BOOL .
+
+  ! reduce/reduce conflict for ID resolved using rule 12 (dataType -> BOOL .)
+    POINTER         reduce using rule 12 (dataType -> BOOL .)
+    ID              reduce using rule 12 (dataType -> BOOL .)
+
+  ! ID              [ reduce using rule 18 (return -> BOOL .) ]
+
+
+state 102
+
+    (20) return -> AUTO .
+    (13) dataType -> AUTO .
+
+  ! reduce/reduce conflict for ID resolved using rule 13 (dataType -> AUTO .)
+    POINTER         reduce using rule 13 (dataType -> AUTO .)
+    ID              reduce using rule 13 (dataType -> AUTO .)
+
+  ! ID              [ reduce using rule 20 (return -> AUTO .) ]
+
+
+state 103
+
+    (6) start -> CLASS ID COLON accesstype ID LCP . statements RCP
+    (21) statements -> . statements terminal
+    (22) statements -> . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+    RCP             reduce using rule 7 (empty -> .)
+
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    statements                     shift and go to state 120
+    terminal                       shift and go to state 121
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 104
+
+    (5) start -> return ID SCOPEOP ID LP parameters . RP optional LCP statements RCP
+    (72) parameters -> parameters . COMMA param
+
+    RP              shift and go to state 127
+    COMMA           shift and go to state 128
+
+
+state 105
+
+    (73) parameters -> param .
+
+    RP              reduce using rule 73 (parameters -> param .)
+    COMMA           reduce using rule 73 (parameters -> param .)
+
+
+state 106
+
+    (74) param -> dataType . ID
+
+    ID              shift and go to state 129
+
+
+state 107
+
+    (75) param -> empty .
+
+    RP              reduce using rule 75 (param -> empty .)
+    COMMA           reduce using rule 75 (param -> empty .)
+
+
+state 108
+
+    (2) start -> FOR LP initialize SEMICOL condition SEMICOL update . RP body
+
+    RP              shift and go to state 130
+
+
+state 109
+
+    (51) update -> ID . PLUS PLUS
+    (53) update -> ID . MINUS MINUS
+
+    PLUS            shift and go to state 131
+    MINUS           shift and go to state 132
+
+
+state 110
+
+    (52) update -> PLUS . PLUS ID
+
+    PLUS            shift and go to state 133
+
+
+state 111
+
+    (54) update -> MINUS . MINUS ID
+
+    MINUS           shift and go to state 134
+
+
+state 112
+
+    (55) update -> empty .
+
+    RP              reduce using rule 55 (update -> empty .)
+
+
+state 113
+
+    (42) condition -> ID operator rvalue .
+
+    SEMICOL         reduce using rule 42 (condition -> ID operator rvalue .)
+
+
+state 114
+
+    (3) start -> SWITCH LP ID RP LCP caseBlocks RCP .
+
+    $end            reduce using rule 3 (start -> SWITCH LP ID RP LCP caseBlocks RCP .)
+
+
+state 115
+
+    (58) caseBlocks -> caseBlocks caseEnd .
+
+    RCP             reduce using rule 58 (caseBlocks -> caseBlocks caseEnd .)
+    CASE            reduce using rule 58 (caseBlocks -> caseBlocks caseEnd .)
+
+
+state 116
+
+    (60) caseEnd -> CASE rvalue . COLON empty
+
+    COLON           shift and go to state 135
+
+
+state 117
+
+    (69) classStatements -> return ID . LP parameters RP SEMICOL
+
+    LP              shift and go to state 136
+
+
+state 118
+
+    (70) classStatements -> dataType identifier . SEMICOL
+    (29) identifier -> identifier . COMMA ident
+
+    SEMICOL         shift and go to state 137
+    COMMA           shift and go to state 24
+
+
+state 119
+
+    (23) terminal -> ID .
+
+    RCP             reduce using rule 23 (terminal -> ID .)
+    ID              reduce using rule 23 (terminal -> ID .)
+    SEMICOL         reduce using rule 23 (terminal -> ID .)
+    NUMBER          reduce using rule 23 (terminal -> ID .)
+    INT             reduce using rule 23 (terminal -> ID .)
+    FLOAT           reduce using rule 23 (terminal -> ID .)
+    CHAR            reduce using rule 23 (terminal -> ID .)
+    DOUBLE          reduce using rule 23 (terminal -> ID .)
+    BOOL            reduce using rule 23 (terminal -> ID .)
+    AUTO            reduce using rule 23 (terminal -> ID .)
+    GT              reduce using rule 23 (terminal -> ID .)
+    LT              reduce using rule 23 (terminal -> ID .)
+    GTE             reduce using rule 23 (terminal -> ID .)
+    LTE             reduce using rule 23 (terminal -> ID .)
+    EE              reduce using rule 23 (terminal -> ID .)
+    NE              reduce using rule 23 (terminal -> ID .)
+
+
+state 120
+
+    (6) start -> CLASS ID COLON accesstype ID LCP statements . RCP
+    (21) statements -> statements . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for RCP resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    RCP             shift and go to state 138
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+
+  ! RCP             [ reduce using rule 7 (empty -> .) ]
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    terminal                       shift and go to state 139
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 121
+
+    (22) statements -> terminal .
+
+    RCP             reduce using rule 22 (statements -> terminal .)
+    ID              reduce using rule 22 (statements -> terminal .)
+    SEMICOL         reduce using rule 22 (statements -> terminal .)
+    NUMBER          reduce using rule 22 (statements -> terminal .)
+    INT             reduce using rule 22 (statements -> terminal .)
+    FLOAT           reduce using rule 22 (statements -> terminal .)
+    CHAR            reduce using rule 22 (statements -> terminal .)
+    DOUBLE          reduce using rule 22 (statements -> terminal .)
+    BOOL            reduce using rule 22 (statements -> terminal .)
+    AUTO            reduce using rule 22 (statements -> terminal .)
+    GT              reduce using rule 22 (statements -> terminal .)
+    LT              reduce using rule 22 (statements -> terminal .)
+    GTE             reduce using rule 22 (statements -> terminal .)
+    LTE             reduce using rule 22 (statements -> terminal .)
+    EE              reduce using rule 22 (statements -> terminal .)
+    NE              reduce using rule 22 (statements -> terminal .)
+
+
+state 122
+
+    (24) terminal -> dataType .
+
+    RCP             reduce using rule 24 (terminal -> dataType .)
+    ID              reduce using rule 24 (terminal -> dataType .)
+    SEMICOL         reduce using rule 24 (terminal -> dataType .)
+    NUMBER          reduce using rule 24 (terminal -> dataType .)
+    INT             reduce using rule 24 (terminal -> dataType .)
+    FLOAT           reduce using rule 24 (terminal -> dataType .)
+    CHAR            reduce using rule 24 (terminal -> dataType .)
+    DOUBLE          reduce using rule 24 (terminal -> dataType .)
+    BOOL            reduce using rule 24 (terminal -> dataType .)
+    AUTO            reduce using rule 24 (terminal -> dataType .)
+    GT              reduce using rule 24 (terminal -> dataType .)
+    LT              reduce using rule 24 (terminal -> dataType .)
+    GTE             reduce using rule 24 (terminal -> dataType .)
+    LTE             reduce using rule 24 (terminal -> dataType .)
+    EE              reduce using rule 24 (terminal -> dataType .)
+    NE              reduce using rule 24 (terminal -> dataType .)
+
+
+state 123
+
+    (25) terminal -> operator .
+
+    RCP             reduce using rule 25 (terminal -> operator .)
+    ID              reduce using rule 25 (terminal -> operator .)
+    SEMICOL         reduce using rule 25 (terminal -> operator .)
+    NUMBER          reduce using rule 25 (terminal -> operator .)
+    INT             reduce using rule 25 (terminal -> operator .)
+    FLOAT           reduce using rule 25 (terminal -> operator .)
+    CHAR            reduce using rule 25 (terminal -> operator .)
+    DOUBLE          reduce using rule 25 (terminal -> operator .)
+    BOOL            reduce using rule 25 (terminal -> operator .)
+    AUTO            reduce using rule 25 (terminal -> operator .)
+    GT              reduce using rule 25 (terminal -> operator .)
+    LT              reduce using rule 25 (terminal -> operator .)
+    GTE             reduce using rule 25 (terminal -> operator .)
+    LTE             reduce using rule 25 (terminal -> operator .)
+    EE              reduce using rule 25 (terminal -> operator .)
+    NE              reduce using rule 25 (terminal -> operator .)
+
+
+state 124
+
+    (26) terminal -> SEMICOL .
+
+    RCP             reduce using rule 26 (terminal -> SEMICOL .)
+    ID              reduce using rule 26 (terminal -> SEMICOL .)
+    SEMICOL         reduce using rule 26 (terminal -> SEMICOL .)
+    NUMBER          reduce using rule 26 (terminal -> SEMICOL .)
+    INT             reduce using rule 26 (terminal -> SEMICOL .)
+    FLOAT           reduce using rule 26 (terminal -> SEMICOL .)
+    CHAR            reduce using rule 26 (terminal -> SEMICOL .)
+    DOUBLE          reduce using rule 26 (terminal -> SEMICOL .)
+    BOOL            reduce using rule 26 (terminal -> SEMICOL .)
+    AUTO            reduce using rule 26 (terminal -> SEMICOL .)
+    GT              reduce using rule 26 (terminal -> SEMICOL .)
+    LT              reduce using rule 26 (terminal -> SEMICOL .)
+    GTE             reduce using rule 26 (terminal -> SEMICOL .)
+    LTE             reduce using rule 26 (terminal -> SEMICOL .)
+    EE              reduce using rule 26 (terminal -> SEMICOL .)
+    NE              reduce using rule 26 (terminal -> SEMICOL .)
+
+
+state 125
+
+    (27) terminal -> NUMBER .
+
+    RCP             reduce using rule 27 (terminal -> NUMBER .)
+    ID              reduce using rule 27 (terminal -> NUMBER .)
+    SEMICOL         reduce using rule 27 (terminal -> NUMBER .)
+    NUMBER          reduce using rule 27 (terminal -> NUMBER .)
+    INT             reduce using rule 27 (terminal -> NUMBER .)
+    FLOAT           reduce using rule 27 (terminal -> NUMBER .)
+    CHAR            reduce using rule 27 (terminal -> NUMBER .)
+    DOUBLE          reduce using rule 27 (terminal -> NUMBER .)
+    BOOL            reduce using rule 27 (terminal -> NUMBER .)
+    AUTO            reduce using rule 27 (terminal -> NUMBER .)
+    GT              reduce using rule 27 (terminal -> NUMBER .)
+    LT              reduce using rule 27 (terminal -> NUMBER .)
+    GTE             reduce using rule 27 (terminal -> NUMBER .)
+    LTE             reduce using rule 27 (terminal -> NUMBER .)
+    EE              reduce using rule 27 (terminal -> NUMBER .)
+    NE              reduce using rule 27 (terminal -> NUMBER .)
+
+
+state 126
+
+    (28) terminal -> empty .
+
+    RCP             reduce using rule 28 (terminal -> empty .)
+    ID              reduce using rule 28 (terminal -> empty .)
+    SEMICOL         reduce using rule 28 (terminal -> empty .)
+    NUMBER          reduce using rule 28 (terminal -> empty .)
+    INT             reduce using rule 28 (terminal -> empty .)
+    FLOAT           reduce using rule 28 (terminal -> empty .)
+    CHAR            reduce using rule 28 (terminal -> empty .)
+    DOUBLE          reduce using rule 28 (terminal -> empty .)
+    BOOL            reduce using rule 28 (terminal -> empty .)
+    AUTO            reduce using rule 28 (terminal -> empty .)
+    GT              reduce using rule 28 (terminal -> empty .)
+    LT              reduce using rule 28 (terminal -> empty .)
+    GTE             reduce using rule 28 (terminal -> empty .)
+    LTE             reduce using rule 28 (terminal -> empty .)
+    EE              reduce using rule 28 (terminal -> empty .)
+    NE              reduce using rule 28 (terminal -> empty .)
+
+
+state 127
+
+    (5) start -> return ID SCOPEOP ID LP parameters RP . optional LCP statements RCP
+    (76) optional -> . COLON initList
+    (77) optional -> . empty
+    (7) empty -> .
+
+    COLON           shift and go to state 141
+    LCP             reduce using rule 7 (empty -> .)
+
+    optional                       shift and go to state 140
+    empty                          shift and go to state 142
+
+state 128
+
+    (72) parameters -> parameters COMMA . param
+    (74) param -> . dataType ID
+    (75) param -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (7) empty -> .
+
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    RP              reduce using rule 7 (empty -> .)
+    COMMA           reduce using rule 7 (empty -> .)
+
+    param                          shift and go to state 143
+    dataType                       shift and go to state 106
+    empty                          shift and go to state 107
+
+state 129
+
+    (74) param -> dataType ID .
+
+    RP              reduce using rule 74 (param -> dataType ID .)
+    COMMA           reduce using rule 74 (param -> dataType ID .)
+
+
+state 130
+
+    (2) start -> FOR LP initialize SEMICOL condition SEMICOL update RP . body
+    (56) body -> . LCP statements RCP
+    (57) body -> . SEMICOL LCP statements RCP
+
+    LCP             shift and go to state 146
+    SEMICOL         shift and go to state 144
+
+    body                           shift and go to state 145
+
+state 131
+
+    (51) update -> ID PLUS . PLUS
+
+    PLUS            shift and go to state 147
+
+
+state 132
+
+    (53) update -> ID MINUS . MINUS
+
+    MINUS           shift and go to state 148
+
+
+state 133
+
+    (52) update -> PLUS PLUS . ID
+
+    ID              shift and go to state 149
+
+
+state 134
+
+    (54) update -> MINUS MINUS . ID
+
+    ID              shift and go to state 150
+
+
+state 135
+
+    (60) caseEnd -> CASE rvalue COLON . empty
+    (7) empty -> .
+
+    RCP             reduce using rule 7 (empty -> .)
+    CASE            reduce using rule 7 (empty -> .)
+
+    empty                          shift and go to state 151
+
+state 136
+
+    (69) classStatements -> return ID LP . parameters RP SEMICOL
+    (72) parameters -> . parameters COMMA param
+    (73) parameters -> . param
+    (74) param -> . dataType ID
+    (75) param -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (7) empty -> .
+
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    RP              reduce using rule 7 (empty -> .)
+    COMMA           reduce using rule 7 (empty -> .)
+
+    parameters                     shift and go to state 152
+    param                          shift and go to state 105
+    dataType                       shift and go to state 106
+    empty                          shift and go to state 107
+
+state 137
+
+    (70) classStatements -> dataType identifier SEMICOL .
+
+    RCP             reduce using rule 70 (classStatements -> dataType identifier SEMICOL .)
+    PRIVATE         reduce using rule 70 (classStatements -> dataType identifier SEMICOL .)
+    PUBLIC          reduce using rule 70 (classStatements -> dataType identifier SEMICOL .)
+    PROTECTED       reduce using rule 70 (classStatements -> dataType identifier SEMICOL .)
+
+
+state 138
+
+    (6) start -> CLASS ID COLON accesstype ID LCP statements RCP .
+
+    $end            reduce using rule 6 (start -> CLASS ID COLON accesstype ID LCP statements RCP .)
+
+
+state 139
+
+    (21) statements -> statements terminal .
+
+    RCP             reduce using rule 21 (statements -> statements terminal .)
+    ID              reduce using rule 21 (statements -> statements terminal .)
+    SEMICOL         reduce using rule 21 (statements -> statements terminal .)
+    NUMBER          reduce using rule 21 (statements -> statements terminal .)
+    INT             reduce using rule 21 (statements -> statements terminal .)
+    FLOAT           reduce using rule 21 (statements -> statements terminal .)
+    CHAR            reduce using rule 21 (statements -> statements terminal .)
+    DOUBLE          reduce using rule 21 (statements -> statements terminal .)
+    BOOL            reduce using rule 21 (statements -> statements terminal .)
+    AUTO            reduce using rule 21 (statements -> statements terminal .)
+    GT              reduce using rule 21 (statements -> statements terminal .)
+    LT              reduce using rule 21 (statements -> statements terminal .)
+    GTE             reduce using rule 21 (statements -> statements terminal .)
+    LTE             reduce using rule 21 (statements -> statements terminal .)
+    EE              reduce using rule 21 (statements -> statements terminal .)
+    NE              reduce using rule 21 (statements -> statements terminal .)
+
+
+state 140
+
+    (5) start -> return ID SCOPEOP ID LP parameters RP optional . LCP statements RCP
+
+    LCP             shift and go to state 153
+
+
+state 141
+
+    (76) optional -> COLON . initList
+    (78) initList -> . initList COMMA paraTerminal
+    (79) initList -> . paraTerminal
+    (80) paraTerminal -> . ID LP ID RP
+
+    ID              shift and go to state 156
+
+    initList                       shift and go to state 154
+    paraTerminal                   shift and go to state 155
+
+state 142
+
+    (77) optional -> empty .
+
+    LCP             reduce using rule 77 (optional -> empty .)
+
+
+state 143
+
+    (72) parameters -> parameters COMMA param .
+
+    RP              reduce using rule 72 (parameters -> parameters COMMA param .)
+    COMMA           reduce using rule 72 (parameters -> parameters COMMA param .)
+
+
+state 144
+
+    (57) body -> SEMICOL . LCP statements RCP
+
+    LCP             shift and go to state 157
+
+
+state 145
+
+    (2) start -> FOR LP initialize SEMICOL condition SEMICOL update RP body .
+
+    $end            reduce using rule 2 (start -> FOR LP initialize SEMICOL condition SEMICOL update RP body .)
+
+
+state 146
+
+    (56) body -> LCP . statements RCP
+    (21) statements -> . statements terminal
+    (22) statements -> . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+    RCP             reduce using rule 7 (empty -> .)
+
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    statements                     shift and go to state 158
+    terminal                       shift and go to state 121
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 147
+
+    (51) update -> ID PLUS PLUS .
+
+    RP              reduce using rule 51 (update -> ID PLUS PLUS .)
+
+
+state 148
+
+    (53) update -> ID MINUS MINUS .
+
+    RP              reduce using rule 53 (update -> ID MINUS MINUS .)
+
+
+state 149
+
+    (52) update -> PLUS PLUS ID .
+
+    RP              reduce using rule 52 (update -> PLUS PLUS ID .)
+
+
+state 150
+
+    (54) update -> MINUS MINUS ID .
+
+    RP              reduce using rule 54 (update -> MINUS MINUS ID .)
+
+
+state 151
+
+    (60) caseEnd -> CASE rvalue COLON empty .
+
+    RCP             reduce using rule 60 (caseEnd -> CASE rvalue COLON empty .)
+    CASE            reduce using rule 60 (caseEnd -> CASE rvalue COLON empty .)
+
+
+state 152
+
+    (69) classStatements -> return ID LP parameters . RP SEMICOL
+    (72) parameters -> parameters . COMMA param
+
+    RP              shift and go to state 159
+    COMMA           shift and go to state 128
+
+
+state 153
+
+    (5) start -> return ID SCOPEOP ID LP parameters RP optional LCP . statements RCP
+    (21) statements -> . statements terminal
+    (22) statements -> . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+    RCP             reduce using rule 7 (empty -> .)
+
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    statements                     shift and go to state 160
+    terminal                       shift and go to state 121
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 154
+
+    (76) optional -> COLON initList .
+    (78) initList -> initList . COMMA paraTerminal
+
+    LCP             reduce using rule 76 (optional -> COLON initList .)
+    COMMA           shift and go to state 161
+
+
+state 155
+
+    (79) initList -> paraTerminal .
+
+    COMMA           reduce using rule 79 (initList -> paraTerminal .)
+    LCP             reduce using rule 79 (initList -> paraTerminal .)
+
+
+state 156
+
+    (80) paraTerminal -> ID . LP ID RP
+
+    LP              shift and go to state 162
+
+
+state 157
+
+    (57) body -> SEMICOL LCP . statements RCP
+    (21) statements -> . statements terminal
+    (22) statements -> . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+    RCP             reduce using rule 7 (empty -> .)
+
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    statements                     shift and go to state 163
+    terminal                       shift and go to state 121
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 158
+
+    (56) body -> LCP statements . RCP
+    (21) statements -> statements . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for RCP resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    RCP             shift and go to state 164
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+
+  ! RCP             [ reduce using rule 7 (empty -> .) ]
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    terminal                       shift and go to state 139
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 159
+
+    (69) classStatements -> return ID LP parameters RP . SEMICOL
+
+    SEMICOL         shift and go to state 165
+
+
+state 160
+
+    (5) start -> return ID SCOPEOP ID LP parameters RP optional LCP statements . RCP
+    (21) statements -> statements . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for RCP resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    RCP             shift and go to state 166
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+
+  ! RCP             [ reduce using rule 7 (empty -> .) ]
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    terminal                       shift and go to state 139
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 161
+
+    (78) initList -> initList COMMA . paraTerminal
+    (80) paraTerminal -> . ID LP ID RP
+
+    ID              shift and go to state 156
+
+    paraTerminal                   shift and go to state 167
+
+state 162
+
+    (80) paraTerminal -> ID LP . ID RP
+
+    ID              shift and go to state 168
+
+
+state 163
+
+    (57) body -> SEMICOL LCP statements . RCP
+    (21) statements -> statements . terminal
+    (23) terminal -> . ID
+    (24) terminal -> . dataType
+    (25) terminal -> . operator
+    (26) terminal -> . SEMICOL
+    (27) terminal -> . NUMBER
+    (28) terminal -> . empty
+    (8) dataType -> . INT
+    (9) dataType -> . FLOAT
+    (10) dataType -> . CHAR
+    (11) dataType -> . DOUBLE
+    (12) dataType -> . BOOL
+    (13) dataType -> . AUTO
+    (45) operator -> . GT
+    (46) operator -> . LT
+    (47) operator -> . GTE
+    (48) operator -> . LTE
+    (49) operator -> . EE
+    (50) operator -> . NE
+    (7) empty -> .
+
+  ! shift/reduce conflict for RCP resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for SEMICOL resolved as shift
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for AUTO resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    RCP             shift and go to state 169
+    ID              shift and go to state 119
+    SEMICOL         shift and go to state 124
+    NUMBER          shift and go to state 125
+    INT             shift and go to state 31
+    FLOAT           shift and go to state 32
+    CHAR            shift and go to state 33
+    DOUBLE          shift and go to state 34
+    BOOL            shift and go to state 35
+    AUTO            shift and go to state 36
+    GT              shift and go to state 80
+    LT              shift and go to state 81
+    GTE             shift and go to state 82
+    LTE             shift and go to state 83
+    EE              shift and go to state 84
+    NE              shift and go to state 85
+
+  ! RCP             [ reduce using rule 7 (empty -> .) ]
+  ! ID              [ reduce using rule 7 (empty -> .) ]
+  ! SEMICOL         [ reduce using rule 7 (empty -> .) ]
+  ! NUMBER          [ reduce using rule 7 (empty -> .) ]
+  ! INT             [ reduce using rule 7 (empty -> .) ]
+  ! FLOAT           [ reduce using rule 7 (empty -> .) ]
+  ! CHAR            [ reduce using rule 7 (empty -> .) ]
+  ! DOUBLE          [ reduce using rule 7 (empty -> .) ]
+  ! BOOL            [ reduce using rule 7 (empty -> .) ]
+  ! AUTO            [ reduce using rule 7 (empty -> .) ]
+  ! GT              [ reduce using rule 7 (empty -> .) ]
+  ! LT              [ reduce using rule 7 (empty -> .) ]
+  ! GTE             [ reduce using rule 7 (empty -> .) ]
+  ! LTE             [ reduce using rule 7 (empty -> .) ]
+  ! EE              [ reduce using rule 7 (empty -> .) ]
+  ! NE              [ reduce using rule 7 (empty -> .) ]
+
+    terminal                       shift and go to state 139
+    dataType                       shift and go to state 122
+    operator                       shift and go to state 123
+    empty                          shift and go to state 126
+
+state 164
+
+    (56) body -> LCP statements RCP .
+
+    $end            reduce using rule 56 (body -> LCP statements RCP .)
+
+
+state 165
+
+    (69) classStatements -> return ID LP parameters RP SEMICOL .
+
+    RCP             reduce using rule 69 (classStatements -> return ID LP parameters RP SEMICOL .)
+    PRIVATE         reduce using rule 69 (classStatements -> return ID LP parameters RP SEMICOL .)
+    PUBLIC          reduce using rule 69 (classStatements -> return ID LP parameters RP SEMICOL .)
+    PROTECTED       reduce using rule 69 (classStatements -> return ID LP parameters RP SEMICOL .)
+
+
+state 166
+
+    (5) start -> return ID SCOPEOP ID LP parameters RP optional LCP statements RCP .
+
+    $end            reduce using rule 5 (start -> return ID SCOPEOP ID LP parameters RP optional LCP statements RCP .)
+
+
+state 167
+
+    (78) initList -> initList COMMA paraTerminal .
+
+    COMMA           reduce using rule 78 (initList -> initList COMMA paraTerminal .)
+    LCP             reduce using rule 78 (initList -> initList COMMA paraTerminal .)
+
+
+state 168
+
+    (80) paraTerminal -> ID LP ID . RP
+
+    RP              shift and go to state 170
+
+
+state 169
+
+    (57) body -> SEMICOL LCP statements RCP .
+
+    $end            reduce using rule 57 (body -> SEMICOL LCP statements RCP .)
+
+
+state 170
+
+    (80) paraTerminal -> ID LP ID RP .
+
+    COMMA           reduce using rule 80 (paraTerminal -> ID LP ID RP .)
+    LCP             reduce using rule 80 (paraTerminal -> ID LP ID RP .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PRIVATE in state 39 resolved as shift
+WARNING: shift/reduce conflict for PUBLIC in state 39 resolved as shift
+WARNING: shift/reduce conflict for PROTECTED in state 39 resolved as shift
+WARNING: shift/reduce conflict for RCP in state 50 resolved as shift
+WARNING: shift/reduce conflict for PRIVATE in state 50 resolved as shift
+WARNING: shift/reduce conflict for PUBLIC in state 50 resolved as shift
+WARNING: shift/reduce conflict for PROTECTED in state 50 resolved as shift
+WARNING: shift/reduce conflict for CASE in state 71 resolved as shift
+WARNING: shift/reduce conflict for RCP in state 88 resolved as shift
+WARNING: shift/reduce conflict for CASE in state 88 resolved as shift
+WARNING: shift/reduce conflict for ID in state 103 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 103 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 103 resolved as shift
+WARNING: shift/reduce conflict for INT in state 103 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 103 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 103 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 103 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 103 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 103 resolved as shift
+WARNING: shift/reduce conflict for GT in state 103 resolved as shift
+WARNING: shift/reduce conflict for LT in state 103 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 103 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 103 resolved as shift
+WARNING: shift/reduce conflict for EE in state 103 resolved as shift
+WARNING: shift/reduce conflict for NE in state 103 resolved as shift
+WARNING: shift/reduce conflict for RCP in state 120 resolved as shift
+WARNING: shift/reduce conflict for ID in state 120 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 120 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 120 resolved as shift
+WARNING: shift/reduce conflict for INT in state 120 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 120 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 120 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 120 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 120 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 120 resolved as shift
+WARNING: shift/reduce conflict for GT in state 120 resolved as shift
+WARNING: shift/reduce conflict for LT in state 120 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 120 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 120 resolved as shift
+WARNING: shift/reduce conflict for EE in state 120 resolved as shift
+WARNING: shift/reduce conflict for NE in state 120 resolved as shift
+WARNING: shift/reduce conflict for ID in state 146 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 146 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 146 resolved as shift
+WARNING: shift/reduce conflict for INT in state 146 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 146 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 146 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 146 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 146 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 146 resolved as shift
+WARNING: shift/reduce conflict for GT in state 146 resolved as shift
+WARNING: shift/reduce conflict for LT in state 146 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 146 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 146 resolved as shift
+WARNING: shift/reduce conflict for EE in state 146 resolved as shift
+WARNING: shift/reduce conflict for NE in state 146 resolved as shift
+WARNING: shift/reduce conflict for ID in state 153 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 153 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 153 resolved as shift
+WARNING: shift/reduce conflict for INT in state 153 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 153 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 153 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 153 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 153 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 153 resolved as shift
+WARNING: shift/reduce conflict for GT in state 153 resolved as shift
+WARNING: shift/reduce conflict for LT in state 153 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 153 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 153 resolved as shift
+WARNING: shift/reduce conflict for EE in state 153 resolved as shift
+WARNING: shift/reduce conflict for NE in state 153 resolved as shift
+WARNING: shift/reduce conflict for ID in state 157 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 157 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 157 resolved as shift
+WARNING: shift/reduce conflict for INT in state 157 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 157 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 157 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 157 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 157 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 157 resolved as shift
+WARNING: shift/reduce conflict for GT in state 157 resolved as shift
+WARNING: shift/reduce conflict for LT in state 157 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 157 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 157 resolved as shift
+WARNING: shift/reduce conflict for EE in state 157 resolved as shift
+WARNING: shift/reduce conflict for NE in state 157 resolved as shift
+WARNING: shift/reduce conflict for RCP in state 158 resolved as shift
+WARNING: shift/reduce conflict for ID in state 158 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 158 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 158 resolved as shift
+WARNING: shift/reduce conflict for INT in state 158 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 158 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 158 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 158 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 158 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 158 resolved as shift
+WARNING: shift/reduce conflict for GT in state 158 resolved as shift
+WARNING: shift/reduce conflict for LT in state 158 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 158 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 158 resolved as shift
+WARNING: shift/reduce conflict for EE in state 158 resolved as shift
+WARNING: shift/reduce conflict for NE in state 158 resolved as shift
+WARNING: shift/reduce conflict for RCP in state 160 resolved as shift
+WARNING: shift/reduce conflict for ID in state 160 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 160 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 160 resolved as shift
+WARNING: shift/reduce conflict for INT in state 160 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 160 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 160 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 160 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 160 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 160 resolved as shift
+WARNING: shift/reduce conflict for GT in state 160 resolved as shift
+WARNING: shift/reduce conflict for LT in state 160 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 160 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 160 resolved as shift
+WARNING: shift/reduce conflict for EE in state 160 resolved as shift
+WARNING: shift/reduce conflict for NE in state 160 resolved as shift
+WARNING: shift/reduce conflict for RCP in state 163 resolved as shift
+WARNING: shift/reduce conflict for ID in state 163 resolved as shift
+WARNING: shift/reduce conflict for SEMICOL in state 163 resolved as shift
+WARNING: shift/reduce conflict for NUMBER in state 163 resolved as shift
+WARNING: shift/reduce conflict for INT in state 163 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 163 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 163 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 163 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 163 resolved as shift
+WARNING: shift/reduce conflict for AUTO in state 163 resolved as shift
+WARNING: shift/reduce conflict for GT in state 163 resolved as shift
+WARNING: shift/reduce conflict for LT in state 163 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 163 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 163 resolved as shift
+WARNING: shift/reduce conflict for EE in state 163 resolved as shift
+WARNING: shift/reduce conflict for NE in state 163 resolved as shift
+WARNING: reduce/reduce conflict in state 7 resolved using rule (dataType -> INT)
+WARNING: rejected rule (return -> INT) in state 7
+WARNING: reduce/reduce conflict in state 8 resolved using rule (dataType -> FLOAT)
+WARNING: rejected rule (return -> FLOAT) in state 8
+WARNING: reduce/reduce conflict in state 9 resolved using rule (dataType -> CHAR)
+WARNING: rejected rule (return -> CHAR) in state 9
+WARNING: reduce/reduce conflict in state 10 resolved using rule (dataType -> DOUBLE)
+WARNING: rejected rule (return -> DOUBLE) in state 10
+WARNING: reduce/reduce conflict in state 11 resolved using rule (dataType -> BOOL)
+WARNING: rejected rule (return -> BOOL) in state 11
+WARNING: reduce/reduce conflict in state 12 resolved using rule (dataType -> AUTO)
+WARNING: rejected rule (return -> AUTO) in state 12
+WARNING: reduce/reduce conflict in state 97 resolved using rule (dataType -> INT)
+WARNING: rejected rule (return -> INT) in state 97
+WARNING: reduce/reduce conflict in state 98 resolved using rule (dataType -> FLOAT)
+WARNING: rejected rule (return -> FLOAT) in state 98
+WARNING: reduce/reduce conflict in state 99 resolved using rule (dataType -> CHAR)
+WARNING: rejected rule (return -> CHAR) in state 99
+WARNING: reduce/reduce conflict in state 100 resolved using rule (dataType -> DOUBLE)
+WARNING: rejected rule (return -> DOUBLE) in state 100
+WARNING: reduce/reduce conflict in state 101 resolved using rule (dataType -> BOOL)
+WARNING: rejected rule (return -> BOOL) in state 101
+WARNING: reduce/reduce conflict in state 102 resolved using rule (dataType -> AUTO)
+WARNING: rejected rule (return -> AUTO) in state 102
+WARNING: Rule (return -> INT) is never reduced
+WARNING: Rule (return -> FLOAT) is never reduced
+WARNING: Rule (return -> CHAR) is never reduced
+WARNING: Rule (return -> DOUBLE) is never reduced
+WARNING: Rule (return -> BOOL) is never reduced
+WARNING: Rule (return -> AUTO) is never reduced
